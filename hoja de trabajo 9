@@ -1,0 +1,58 @@
+
+#Tabla.
+
+#Descripción	                    / ¿Función o procedimiento?
+#Mostrar un saludo por pantalla  /	Procedimiento
+Calcular el doble de un número  /	Función
+#Imprimir un menú con 3 opciones /	Procedimiento
+#Devolver la suma de dos números /	Función
+
+#ejercicio 1.
+
+def es_par_o_impar(n):
+    if n % 2 == 0:
+        print(f"{n} es un número par.")
+    else:
+        print(f"{n} es un número impar.")
+
+#ejercicio 2.
+
+def suma_lista(lista):
+    return sum(lista)
+
+#jercicio 3.
+
+def cuenta_regresiva(n):
+    if n < 0:
+        print("¡Despegue!")
+    else:
+        print(n)
+        cuenta_regresiva(n - 1)
+
+
+cuenta_regresiva(10)
+
+#ejercicio 4.
+
+def cuenta_ascendente(n):
+    if n > 0:
+        cuenta_ascendente(n - 1)
+        print(n)
+
+#ejercicio 5.
+
+def suma_hasta(n)
+  return n * (n + 1) // 2
+
+#ejercicio 6.
+
+def minimo(lista):
+    
+    if len(lista) == 1:
+        return lista[0]
+    else:
+       
+        resto_minimo = minimo(lista[1:])
+        return lista[0] if lista[0] < resto_minimo else resto_minimo
+
+
