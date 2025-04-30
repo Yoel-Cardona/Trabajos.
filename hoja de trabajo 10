@@ -1,0 +1,114 @@
+#Hoja de Trabajo 10.
+
+
+#Clínica veterinaria
+
+class Animal:
+    def __init__(self, nombre, edad, peso):
+        self.nombre = nombre
+        self.edad = edad
+        self.peso = peso
+
+    def mostrar_datos(self):
+        print(f"Nombre: {self.nombre}, Edad: {self.edad} años, Peso: {self.peso} kg")
+
+    def calcular_dosis(self):
+        return 0  # Se sobrescribirá en cada especie
+
+    def generar_ficha(self):
+        print("Ficha médica:")
+        self.mostrar_datos()
+        print(f"Dosis recomendada: {self.calcular_dosis()} ml")
+
+
+class Perro(Animal):
+    def __init__(self, nombre, edad, peso, raza):
+        super().__init__(nombre, edad, peso)
+        self.raza = raza
+
+    def calcular_dosis(self):
+        return self.peso * 0.5  # ejemplo: 0.5 ml por kg
+
+
+class Gato(Animal):
+    def __init__(self, nombre, edad, peso, color):
+        super().__init__(nombre, edad, peso)
+        self.color = color
+
+    def calcular_dosis(self):
+        return self.peso * 0.3
+
+
+class Ave(Animal):
+    def __init__(self, nombre, edad, peso, tipo):
+        super().__init__(nombre, edad, peso)
+        self.tipo = tipo
+
+    def calcular_dosis(self):
+        return self.peso * 0.1
+
+
+class Reptil(Animal):
+    def __init__(self, nombre, edad, peso, especie):
+        super().__init__(nombre, edad, peso)
+        self.especie = especie
+
+    def calcular_dosis(self):
+        return self.peso * 0.4
+
+
+# Ejemplo de uso
+mi_perro = Perro("Max", 5, 20, "Labrador")
+mi_perro.generar_ficha()
+
+mi_gato = Gato("Luna", 3, 4, "Negro")
+mi_gato.generar_ficha()
+
+
+# Sistema de personas en una institución
+class Persona:
+    def __init__(self, nombre, edad, dni):
+        self.nombre = nombre
+        self.edad = edad
+        self.dni = dni
+
+    def mostrar_info(self):
+        print(f"Nombre: {self.nombre}, Edad: {self.edad}, DNI: {self.dni}")
+
+
+class Estudiante(Persona):
+    def __init__(self, nombre, edad, dni, carrera):
+        super().__init__(nombre, edad, dni)
+        self.carrera = carrera
+
+    def mostrar_info(self):
+        super().mostrar_info()
+        print(f"Carrera: {self.carrera}")
+
+
+class Profesor(Persona):
+    def __init__(self, nombre, edad, dni, especialidad):
+        super().__init__(nombre, edad, dni)
+        self.especialidad = especialidad
+
+    def mostrar_info(self):
+        super().mostrar_info()
+        print(f"Especialidad: {self.especialidad}")
+
+
+class Administrativo(Persona):
+    def __init__(self, nombre, edad, dni, area):
+        super().__init__(nombre, edad, dni)
+        self.area = area
+
+    def mostrar_info(self):
+        super().mostrar_info()
+        print(f"Área: {self.area}")
+
+
+# Ejemplo de uso
+e1 = Estudiante("Ana", 21, "12345678", "Ingeniería")
+e1.mostrar_info()
+
+p1 = Profesor("Carlos", 45, "87654321", "Matemáticas")
+p1.mostrar_info()
