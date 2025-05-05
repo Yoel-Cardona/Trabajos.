@@ -1,0 +1,37 @@
+Juego interactivo.
+
+import time
+
+def adivina_el_numero(numero, intentos, tiempo_inicio):
+    
+    if intentos == 0:
+        print("¡Se acabaron los intentos! El número secreto era:", numero)
+        return
+    
+    
+    intento_usuario = int(input(f"Te quedan {intentos} intentos. Adivina el número: "))
+    
+    
+    if intento_usuario == numero:
+        tiempo_total = time.time() - tiempo_inicio  
+        print(f"¡Felicidades! Has adivinado el número en {6 - intentos} intentos y en {tiempo_total:.2f} segundos.")
+        return
+    elif intento_usuario < numero:
+        print("El número es mayor. Intenta nuevamente.")
+    else:
+        print("El número es menor. Intenta nuevamente.")
+    
+    
+    adivina_el_numero(numero, intentos - 1, tiempo_inicio)
+
+
+numero_secreto = 100
+print("Bienvenido al juego de Adivina el Número.")
+print("Elige un número entre 1 y 100.")
+print("¡Buena suerte!")
+
+
+tiempo_inicio = time.time()
+
+
+adivina_el_numero(numero_secreto, 5, tiempo_inicio)
