@@ -1,0 +1,16 @@
+main.py 
+numero = int(input("Ingrese un número del 1 al 9: ")) 
+resultado = 
+if numero < 1 or numero > 9: 
+resultado = "numero no valido" 
+elif numero <= 3: 
+resultado numero 'I' 
+elif numero == 4: 
+resultado = 'IV' 
+elif numero == 5: 
+resultado = 'v' 
+elif numero == 9: 
+resultado = 'IX' 
+elif numero > 5: 
+resultado = 'V' + (numero -5) * 'I'
+print(resultado)
