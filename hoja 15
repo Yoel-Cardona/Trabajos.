@@ -1,0 +1,37 @@
+class OperadorLogico:
+    def operar(self, a, b=None):
+        pass
+
+class And(OperadorLogico):
+    def operar(self, a, b):
+        return a and b
+
+class Or(OperadorLogico):
+    def operar(self, a, b):
+        return a or b
+
+class Not(OperadorLogico):
+    def operar(self, a, b=None):
+        return not a
+
+class CalculadoraTabla:
+    def __init__(self, var1, var2):
+        self.a = var1
+        self.b = var2
+        self.and_op = And()
+        self.or_op = Or()
+        self.not_op = Not()
+
+    def mostrar_tabla(self):
+        print("A B AND OR NOT_A NOT_B")
+        casos = [(0,0),(0,1),(1,0),(1,1)]
+        for a,b in casos:
+            and_r = self.and_op.operar(a, b)
+            or_r = self.or_op.operar(a, b)
+            not_a = self.not_op.operar(a)
+            not_b = self.not_op.operar(b)
+            print(f"{a} {b}  {int(and_r)}   {int(or_r)}    {int(not_a)}     {int(not_b)}")
+
+# Prueba
+calc = CalculadoraTabla(0,0)
+calc.mostrar_tabla()
