@@ -1,0 +1,79 @@
+#Ejercicio 1
+
+def llenar_multiples(tamano, base):
+    arreglo = []
+    for i in range(1, tamano + 1):
+        arreglo.append(base * i) 
+    return arreglo
+
+
+tamano_arreglo = int(input("Ingrese el tamaño del arreglo: "))
+numero_base = int(input("Número base: "))
+
+
+resultado = llenar_multiples(tamano_arreglo, numero_base)
+
+
+print("El arreglo múltiplos es:", resultado)
+
+
+#Ejercicio 2
+
+
+n = int(input("Tamaño de los vectores: "))
+
+
+nombres = []
+longitudes = []
+
+
+for i in range(n):
+    nombre = input(f"Ingrese el nombre #{i + 1}: ")
+    nombres.append(nombre)
+    longitudes.append(len(nombre))
+
+
+print("\nNombres ingresados:")
+print(nombres)
+print("Longitudes de los nombres:")
+print(longitudes)
+
+
+#Escenario 1
+
+def evaluar_atencion(n, respuestas):
+   
+    conteo = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
+    
+    for respuesta in respuestas:
+        if 1 <= respuesta <= 5:
+            conteo[respuesta] += 1
+    
+  
+    promedio = sum(respuestas) / n
+    
+   
+    mas_frecuente = max(conteo, key=conteo.get)
+    
+  
+    menores_al_promedio = sum(1 for respuesta in respuestas if respuesta < promedio)
+    porcentaje_menor_promedio = (menores_al_promedio / n) * 100
+    
+ 
+    print("Respuestas:")
+    print(f"Excelente: {conteo[5]}")
+    print(f"Muy Buena: {conteo[4]}")
+    print(f"Buena: {conteo[3]}")
+    print(f"Regular: {conteo[2]}")
+    print(f"Malo: {conteo[1]}")
+    
+    print(f"\nMás frecuente: {mas_frecuente}")
+    print(f"Promedio: {promedio:.2f}")
+    print(f"Porcentaje menor al promedio: {porcentaje_menor_promedio:.2f}%")
+
+
+n = 15
+respuestas = [5, 2, 4, 5, 3, 4, 2, 5, 3, 4, 4, 3, 5, 2, 4]
+
+
+evaluar_atencion(n, respuestas)
