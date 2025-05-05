@@ -1,0 +1,119 @@
+# Trabajo
+#trabajo en clase
+
+1. . Escribe un programa que extraiga la primera y la última palabra de una oración. Split()
+def extraer_palabras(oracion):
+    palabras = oracion.split()  # Separa la oración en palabras
+    primera_palabra = palabras[0]  # La primera palabra
+    ultima_palabra = palabras[-1]  # La última palabra
+    print(f"Primera palabra: {primera_palabra}, Última palabra: {ultima_palabra}")
+
+# Ejemplo de uso
+oracion = "Python es un lenguaje poderoso"
+extraer_palabras(oracion)
+
+2.  Crea un programa que elimine los espacios repetidos en una cadena
+def eliminar_espacios_repetidos(cadena):
+    # Usamos split() para dividir la cadena por cualquier cantidad de espacios
+    palabras = cadena.split()
+    # Usamos join() para unir las palabras con un solo espacio
+    cadena_limpia = " ".join(palabras)
+    return cadena_limpia
+
+# Ejemplo
+entrada = "Hola   mundo   en   Python"
+salida = eliminar_espacios_repetidos(entrada)
+print(salida)
+
+  3. Dado un correo electrónico, extrae solo el dominio.
+def extraer_dominio(correo):
+   
+    dominio = correo.split('@')[1]
+    return dominio
+
+# Ejemplo de uso
+correo = "usuario_ANDY:YOEL@gmail.com"
+dominio = extraer_dominio(correo)
+print(dominio)
+
+4. Dado un nombre de archivo, verifica si tiene la extensión correcta (ej. .pdf)   
+def verificar_extension(archivo, extension):
+   
+    return archivo.endswith(extension)
+
+# Ejemplo
+archivo1 = "documento.pdf"
+archivo2 = "imagen.jpg"
+archivo3 = "imagen.jpg"
+archivo4 = "imagen.pdf"
+
+
+print(verificar_extension(archivo1, ".pdf"))  
+print(verificar_extension(archivo2, ".pdf"))  
+print(verificar_extension(archivo3, ".pdf"))  
+print(verificar_extension(archivo4, ".pdf"))
+
+5. Dado un texto, invierte el orden de las palabras
+def invertir_palabras(texto):
+   
+    palabras = texto.split()
+   
+    texto_invertido = " ".join(palabras[::-1])
+    return texto_invertido
+
+# Ejemplo
+entrada = "Python es muy interesante y entretenido"
+salida = invertir_palabras(entrada)
+print(salida)
+
+6.    Dado un texto ingresado por el usuario detectar palabras claves y responder:
+def responder_según_palabra_clave(texto_usuario):
+   
+    poema1 = """Podrá nublarse el sol eternamente;
+Podrá secarse en un instante el mar;
+Podrá romperse el eje de la tierra
+Como un débil cristal."""
+
+    canto1 = """Eres como la noche, callada y constelada.
+Tu silencio es de estrella, tan lejano y sencillo.
+Me gustas cuando callas porque estás como ausente.
+Distante y dolorosa como si hubieras muerto."""
+   
+    poema2 = """Aquí tienes un poema de otro tipo,
+Con versos de amor que se esparcen como luz.
+El sol brilla fuerte, sobre el mar tan brillante,
+Nuestro amor es inmenso, como el cielo distante."""
+
+    canto2 = """La alegría danza en el aire como el viento,
+Canta el alma libre, llena de contento.
+Las estrellas brillan con luz tan brillante,
+Y el mundo se llena de gozo y de encanto."""
+
+    # palabras clave
+    palabras_clave_poema = ["poema", "amor", "sentimientos", "poesía"]
+    palabras_clave_canto = ["canción", "alegría", "felicidad", "canto"]
+   
+   
+    texto_usuario = texto_usuario.lower()
+   
+   
+    if any(palabra in texto_usuario for palabra in palabras_clave_poema):
+        if "poema de amor" in texto_usuario:
+            print("Poema de amor:")
+            print(poema1)
+        else:
+            print("Otro poema:")
+            print(poema2)
+    elif any(palabra in texto_usuario for palabra in palabras_clave_canto):
+        if "canción de alegría" in texto_usuario:
+            print("Canción de alegría:")
+            print(canto1)
+        else:
+            print("Otra canción:")
+            print(canto2)
+    else:
+        print("No entiendo lo que me pides")
+
+# Ejemplo
+entrada_usuario = input("Ingresa tu texto: ")
+responder_según_palabra_clave(entrada_usuario)
