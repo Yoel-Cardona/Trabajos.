@@ -1,0 +1,56 @@
+#Ejercicio 12
+
+dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]
+azucar = [130, 160, 95, 175, 160]
+sal = [2000, 2400, 1800, 2400, 2700]
+presion = [115, 130, 110, 125, 175]
+
+suma_azucar = 0
+suma_sal = 0
+suma_presion = 0
+
+for i in range(5):
+    print("Día:", dias[i])
+    print("Azúcar:", azucar[i], "mg/dL")
+    if azucar[i] < 70 or azucar[i] > 140:
+        print("Alerta: azúcar fuera de rango")
+    
+    print("Sal:", sal[i], "mg")
+    if sal[i] > 2300:
+        print("Alerta: consumo alto de sal")
+    
+    print("Presión sistólica:", presion[i], "mmHg")
+    if presion[i] < 120:
+        print("Presión normal")
+    elif presion[i] < 130:
+        print("Presión elevada")
+    elif presion[i] < 140:
+        print("Hipertensión etapa 1")
+    else:
+        print("Hipertensión etapa 2")
+    print()
+    
+    suma_azucar += azucar[i]
+    suma_sal += sal[i]
+    suma_presion += presion[i]
+
+prom_azucar = suma_azucar / 5
+prom_sal = suma_sal / 5
+prom_presion = suma_presion / 5
+
+print("Promedio semanal:")
+print("Azúcar:", prom_azucar, "mg/dL")
+if prom_azucar < 70 or prom_azucar > 140:
+    print("Promedio de azúcar fuera de rango")
+print("Sal:", prom_sal, "mg")
+if prom_sal > 2300:
+    print("Promedio de sal alto")
+print("Presión:", prom_presion, "mmHg")
+if prom_presion < 120:
+    print("Presión normal")
+elif prom_presion < 130:
+    print("Presión elevada")
+elif prom_presion < 140:
+    print("Hipertensión etapa 1")
+else:
+    print("Hipertensión etapa 2")
