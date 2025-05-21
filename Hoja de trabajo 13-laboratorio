@@ -1,0 +1,53 @@
+matriz = [
+ [0,0,0,0,0,0,0,1,1,0],
+ [0,1,1,0,0,0,0,0,0,0],
+ [0,1,0,0,0,0,0,0,0,0],
+ [0,0,0,0,0,0,0,0,0,0],
+ [0,0,0,0,0,0,0,0,0,0],
+ [0,0,0,0,0,1,1,0,0,0],
+ [0,0,0,0,0,1,1,0,0,0],
+ [0,0,1,1,0,0,0,0,0,0],
+ [0,0,1,1,0,0,0,0,0,0],
+ [0,0,0,0,0,0,0,0,1,0],
+]
+
+def imprimir_tablero(m):
+    for fila in m:
+        print(" ".join(str(x) for x in fila))
+    print()
+
+def siguiente_generacion(m):
+    filas = len(m)
+    cols = len(m[0])
+    nueva = []
+
+    for i in range(filas):
+        fila_nueva = []
+        for j in range(cols):
+            vecinos = 0
+            if j > 0:
+                vecinos += m[i][j-1]
+            if j < cols - 1:
+                vecinos += m[i][j+1]
+
+            if m[i][j] == 1:
+                if vecinos == 1 or vecinos == 2:
+                    fila_nueva.append(1)
+                else:
+                    fila_nueva.append(0)
+            else:
+                if vecinos == 1:
+                    fila_nueva.append(1)
+                else:
+                    fila_nueva.append(0)
+        nueva.append(fila_nueva)
+    return nueva
+
+print("Generación 0:")
+imprimir_tablero(matriz)
+gen1 = siguiente_generacion(matriz)
+print("Generación 1:")
+imprimir_tablero(gen1)
+gen2 = siguiente_generacion(gen1)
+print("Generación 2:")
+imprimir_tablero(gen2)
