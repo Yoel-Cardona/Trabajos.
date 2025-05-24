@@ -1,0 +1,149 @@
+#ing subo el proyecto por este medio porque el dia de ayer no me dejo subirlo en el espacio le pido una disculpa.
+
+# Lista para datos
+datos = []
+
+# Lista de departamentos
+departamentos = ["Alta Verapaz", "Baja Verapaz", "Chimaltenango", "Chiquimula",
+                 "El Progreso", "Escuintla", "Guatemala", "Huehuetenango", "Izabal",
+                 "Jalapa", "Jutiapa", "Petén", "Quetzaltenango", "Quiché",
+                 "Retalhuleu", "Sacatepéquez", "San Marcos", "Santa Rosa",
+                 "Sololá", "Suchitepéquez", "Totonicapán", "Zacapa"]
+
+# Promedios
+peso_prom = 8.0
+talla_prom = 72.0
+craneo_prom = 46.0
+
+# Función para ingresar datos
+def ingresar_datos():
+    seguir = "s"
+    while seguir == "s":
+        print("\nIngreso de datos")
+
+        edad = int(input("Edad (0 a 24 meses): "))
+        while edad < 0 or edad > 24:
+            print("Edad inválida.")
+            edad = int(input("Edad (0 a 24 meses): "))
+
+        peso = float(input("Peso (kg): "))
+        while peso <= 0:
+            print("Peso inválido.")
+            peso = float(input("Peso (kg): "))
+
+        talla = float(input("Talla (cm): "))
+        while talla <= 0:
+            print("Talla inválida.")
+            talla = float(input("Talla (cm): "))
+
+        craneo = float(input("Perímetro craneal (cm): "))
+        while craneo <= 0:
+            print("Perímetro inválido.")
+            craneo = float(input("Perímetro craneal (cm): "))
+
+#len contar la lista del primero al ultimo
+        print("\nDepartamentos disponibles:")
+        for i in range(len(departamentos)):
+            print(f"{i+1}. {departamentos[i]}")
+        opcion = int(input("Seleccione el número de su departamento: "))
+        while opcion < 1 or opcion > len(departamentos):
+            print("Opción inválida.")
+            opcion = int(input("Seleccione el número de su departamento: "))
+
+#es para la lista de la opcion seleccionada 
+        departamento = departamentos[opcion - 1]
+#mostrar datos ingresados 
+        niño = {
+            "edad": edad,
+            "peso": peso,
+            "talla": talla,
+            "craneo": craneo,
+            "departamento": departamento
+        }
+#es una función de las listas que agrega un nuevo elemento al final.
+        datos.append(niño)
+#se pregunta si desea ingresar mas niños
+        seguir = input("¿Desea ingresar otro niño? (s/n): ")
+
+# Función para clasificar un valor
+def clasificar(valor, promedio):
+    if valor < promedio:
+        return "Bajo"
+    elif valor == promedio:
+        return "Dentro"
+    else:
+        return "Sobre"
+
+# Clasificar los niños
+def clasificar_ninos():
+    for niño in datos:
+        niño["peso_estado"] = clasificar(niño["peso"], peso_prom)
+        niño["talla_estado"] = clasificar(niño["talla"], talla_prom)
+        niño["craneo_estado"] = clasificar(niño["craneo"], craneo_prom)
+
+# Función para mostrar resultados por departamento
+def resultados_por_departamento():
+    print("\n--- Resultados por departamento ---")
+    for depto in departamentos:
+        niños_depto = [n for n in datos if n["departamento"] == depto]
+        if len(niños_depto) == 0:
+            continue
+
+        def contar_estado(indicador):
+            bajos = sum(1 for n in niños_depto if n[indicador] == "Bajo")
+            dentro = sum(1 for n in niños_depto if n[indicador] == "Dentro")
+            sobre = sum(1 for n in niños_depto if n[indicador] == "Sobre")
+            total = len(niños_depto)
+            return (
+                #redondear los decimales 
+                int((bajos / total) * 100),
+                int((dentro / total) * 100),
+                int((sobre / total) * 100)
+            )
+#cada lineea llama a una funcion 
+        peso_bajo, peso_dentro, peso_sobre = contar_estado("peso_estado")
+        talla_bajo, talla_dentro, talla_sobre = contar_estado("talla_estado")
+        craneo_bajo, craneo_dentro, craneo_sobre = contar_estado("craneo_estado")
+
+        print(f"\nDepartamento: {depto}")
+        print(f"Niños evaluados: {len(niños_depto)}")
+        print(f"Peso -> Bajo: {peso_bajo}%, Dentro: {peso_dentro}%, Sobre: {peso_sobre}%")
+        print(f"Talla -> Bajo: {talla_bajo}%, Dentro: {talla_dentro}%, Sobre: {talla_sobre}%")
+        print(f"Cráneo -> Bajo: {craneo_bajo}%, Dentro: {craneo_dentro}%, Sobre: {craneo_sobre}%")
+
+# Función para resumen general
+def resumen_general():
+    print("\n--- Resumen general ---")
+    total = len(datos)
+    if total == 0:
+        print("No hay datos.")
+        return
+
+    def contar_todo(indicador):
+        bajos = sum(1 for n in datos if n[indicador] == "Bajo")
+        dentro = sum(1 for n in datos if n[indicador] == "Dentro")
+        sobre = sum(1 for n in datos if n[indicador] == "Sobre")
+        return (
+            
+            #int(...) para quitarle los decimales.
+            int((bajos / total) * 100),
+            int((dentro / total) * 100),
+            int((sobre / total) * 100)
+
+
+        )
+#contar_todo(), que se encarga de contar cuántos niños hay en total en cada categoría
+    pb, pd, ps = contar_todo("peso_estado")
+    tb, td, ts = contar_todo("talla_estado")
+    cb, cd, cs = contar_todo("craneo_estado")
+
+    print("Indicador    Bajo %    Dentro %    Sobre %")
+    print(f"Peso         {pb}%       {pd}%         {ps}%")
+    print(f"Talla        {tb}%       {td}%         {ts}%")
+    print(f"Cráneo       {cb}%       {cd}%         {cs}%")
+
+# Programa principal
+ingresar_datos()
+clasificar_ninos()
+resultados_por_departamento()
+resumen_general()
